@@ -1,0 +1,44 @@
+import random
+
+def centros_al_cuadrado(seed, n):
+    """Genera n números aleatorios por el método de centros al cuadrado."""
+    random_numbers = []
+    for _ in range(n):
+        # Elevar al cuadrado la semilla
+        squared = str(seed ** 2).zfill(8)  # Asegurarse de tener 8 dígitos
+        # Tomar los dígitos centrales
+        middle_digits = squared[2:6]  # Tomar los dígitos 3 al 6
+        random_numbers.append(int(middle_digits) / 10000)  # Normalizar entre 0 y 1
+        # Actualizar la semilla con el nuevo número
+        seed = int(middle_digits)
+    return random_numbers
+
+def medios_cuadrados(seed, n):
+    """Genera n números aleatorios por el método de medios cuadrados."""
+    random_numbers = []
+    for _ in range(n):
+        # Multiplicar la semilla por sí misma
+        squared = str(seed ** 2).zfill(8)  # Asegurarse de tener 8 dígitos
+        # Tomar los dígitos centrales
+        middle_digits = squared[2:6]  # Tomar los dígitos 3 al 6
+        random_numbers.append(int(middle_digits) / 10000)  # Normalizar entre 0 y 1
+        # Actualizar la semilla con el nuevo número
+        seed = int(middle_digits)
+    return random_numbers
+
+# Parámetros
+seed_centros = 1234  # Semilla para el método de centros al cuadrado
+seed_medios = 5678   # Semilla para el método de medios cuadrados
+n = 100  # Cantidad de números aleatorios a generar
+
+# Generar los números
+centros_numbers = centros_al_cuadrado(seed_centros, n)
+medios_numbers = medios_cuadrados(seed_medios, n)
+
+# Imprimir los resultados
+print("Números generados por el método de centros al cuadrado:")
+print(centros_numbers)
+
+print("\nNúmeros generados por el método de medios cuadrados:")
+print(medios_numbers)
+
